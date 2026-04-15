@@ -13,7 +13,7 @@ const navItems = {
   '/info/jobs-and-intership': {
     name: 'jobs',
   },
-  'https://heulaulab.tazkiyaworks.fun': {
+  'mailto:heulaulab@gmail.com': {
     name: 'contact',
   },
 }
