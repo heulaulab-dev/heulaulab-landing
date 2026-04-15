@@ -10,6 +10,9 @@ const navItems = {
   '/portfolio': {
     name: 'porto',
   },
+  '/info/jobs-and-intership': {
+    name: 'jobs',
+  },
   'https://heulaulab.tazkiyaworks.fun': {
     name: 'contact',
   },
