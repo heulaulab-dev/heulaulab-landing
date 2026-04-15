@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -27,7 +28,7 @@ function Table({ data }) {
 }
 
 function CustomLink(props) {
-  let href = props.href
+  let href = props.href || ''
 
   if (href.startsWith('/')) {
     return (
@@ -45,12 +46,30 @@ function CustomLink(props) {
 }
 
 function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
+  const src = typeof props.src === 'string' ? props.src : ''
+  const alt = props.alt || ''
+
+  if (!src) {
+    return null
+  }
+
+  return <Image src={src} alt={alt} className="rounded-lg" width={1200} height={630} />
 }
 
-function Code({ children, ...props }) {
-  let codeHTML = highlight(children)
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+function Code({ children, className, ...props }) {
+  const codeContent = String(children || '')
+  const isBlock = className?.startsWith('language-')
+
+  if (!isBlock) {
+    return (
+      <code className={className} {...props}>
+        {children}
+      </code>
+    )
+  }
+
+  let codeHTML = highlight(codeContent)
+  return <code className={className} dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
 function slugify(str) {
@@ -101,9 +120,11 @@ let components = {
 
 export function CustomMDX(props) {
   return (
-    <MDXRemote
-      {...props}
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       components={{ ...components, ...(props.components || {}) }}
-    />
+    >
+      {props.source}
+    </ReactMarkdown>
   )
 }

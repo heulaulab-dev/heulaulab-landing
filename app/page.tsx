@@ -4,12 +4,10 @@ export default function Page() {
   return (
 		<section>
 			<h1 className='mb-8 font-semibold text-2xl tracking-tighter'>
-				meet Heulaulab
+				meet heulaulab
 			</h1>
 			<p className='mb-4'>
-				Heulaulab is a software engineer and designer who loves to create
-				beautiful and functional web applications. He has a passion for learning
-				new technologies and sharing his knowledge with others.
+				heulaulab is a multidisciplinary design lab working across digital and physical space. We build bold, unconventional systems from software interfaces to spatial experiences rooted in raw modernist principles and controlled imperfection. Not every brand needs to be liked. Some need to be remembered.
 			</p>
 			<div className='my-8'>
 				<BlogPosts />

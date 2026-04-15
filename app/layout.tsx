@@ -1,12 +1,24 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import { Archivo, Cormorant_Garamond } from 'next/font/google'
 import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
+
+const primaryGrotesk = Archivo({
+	subsets: ['latin'],
+	weight: ['500', '600', '700', '800'],
+	variable: '--font-primary',
+});
+
+const secondarySerif = Cormorant_Garamond({
+	subsets: ['latin'],
+	weight: ['500', '600', '700'],
+	variable: '--font-secondary',
+});
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -15,11 +27,11 @@ export const metadata: Metadata = {
 		template: '%s | Heulaulab',
 	},
 	description:
-		'Heulaulab is a software engineer and designer who loves to create beautiful and functional web applications. He has a passion for learning new technologies and sharing his knowledge with others.',
+		'heulaulab is a multidisciplinary design lab working across digital and physical space. We build bold, unconventional systems from software interfaces to spatial experiences rooted in raw modernist principles and controlled imperfection. Not every brand needs to be liked. Some need to be remembered.',
 	openGraph: {
 		title: 'Heulaulab',
 		description:
-			'Heulaulab is a software engineer and designer who loves to create beautiful and functional web applications. He has a passion for learning new technologies and sharing his knowledge with others.',
+			'heulaulab is a multidisciplinary design lab working across digital and physical space. We build bold, unconventional systems from software interfaces to spatial experiences rooted in raw modernist principles and controlled imperfection. Not every brand needs to be liked. Some need to be remembered.',
 		url: baseUrl,
 		siteName: 'Heulaulab',
 		locale: 'en_US',
@@ -46,11 +58,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			lang='en'
 			className={cx(
 				'text-black bg-white dark:text-white dark:bg-black',
-				GeistSans.variable,
+				primaryGrotesk.variable,
+				secondarySerif.variable,
 				GeistMono.variable,
 			)}
 		>
-			<body className='mx-4 lg:mx-auto mt-8 max-w-xl antialiased'>
+			<body className='mx-4 lg:mx-auto mt-8 max-w-xl antialiased [font-family:var(--font-primary)]'>
 				<main className='flex flex-col flex-auto mt-6 px-2 md:px-0 min-w-0'>
 					<Navbar />
 					{children}

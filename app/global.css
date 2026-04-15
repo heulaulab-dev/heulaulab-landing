@@ -33,6 +33,10 @@ html {
   min-width: 360px;
 }
 
+.font-secondary {
+  font-family: var(--font-secondary), serif;
+}
+
 .prose .anchor {
   @apply absolute invisible no-underline;
 
