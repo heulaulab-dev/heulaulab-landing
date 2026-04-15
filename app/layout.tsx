@@ -1,7 +1,6 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { GeistMono } from 'geist/font/mono'
-import { Archivo, Cormorant_Garamond } from 'next/font/google'
+import { Archivo, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
 import { Navbar } from './components/nav'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -18,6 +17,12 @@ const secondarySerif = Cormorant_Garamond({
 	subsets: ['latin'],
 	weight: ['500', '600', '700'],
 	variable: '--font-secondary',
+});
+
+const mono = JetBrains_Mono({
+	subsets: ['latin'],
+	weight: ['500', '700'],
+	variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -60,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				'text-black bg-white dark:text-white dark:bg-black',
 				primaryGrotesk.variable,
 				secondarySerif.variable,
-				GeistMono.variable,
+				mono.variable,
 			)}
 		>
 			<body className='mx-4 lg:mx-auto mt-8 max-w-xl antialiased [font-family:var(--font-primary)]'>
